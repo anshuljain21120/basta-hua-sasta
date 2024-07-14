@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Products</title>
+</head>
+
+<body>
+<h1>Manage Your Products</h1>
+<br>
+Total count: {{ count }}
+{% if results %}
+    <ul>
+        {% for product in results %}
+            <li><a href="{% url 'product_detail' product.id %}">{{ product.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% if next %} <a href= {{ next }}>Next</a> {% endif %}
+    |{% if previous %} <a href= {{ previous }}>Previous</a> {% endif %}
+{% else %}
+    <p>No products are available.</p>
+{% endif %}
+</body>
+</html>

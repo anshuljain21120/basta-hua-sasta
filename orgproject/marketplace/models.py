@@ -36,11 +36,11 @@ class Order(TimeStampedAbstractModel, SafeDeleteAbstractModel):
     REQUESTED = "Rq"
     PAYMENT_COLLECTED = "Pc"
     DELIVERED = "Dl"
-    STATUS_CHOICES = {
-        REQUESTED: "Requested",
-        PAYMENT_COLLECTED: "Payment Collected",
-        DELIVERED: "Delivered"
-    }
+    STATUS_CHOICES = (
+        (REQUESTED, "Requested"),
+        (PAYMENT_COLLECTED, "Payment Collected"),
+        (DELIVERED, "Delivered")
+    )
     belongs_to = models.ForeignKey(to=User, on_delete=models.CASCADE)
     total_price = models.DecimalField(decimal_places=2, default=0.0, max_digits=5)
     delivered_at = models.DateTimeField(null=True, blank=True)

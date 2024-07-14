@@ -10,10 +10,16 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
+    seller_name = serializers.SerializerMethodField(method_name='get_seller_name')
 
     class Meta:
         model = Product
         fields = '__all__'
+        extra_fields = ['seller_name']
+
+    @staticmethod
+    def get_seller_name(product: Product):
+        return product.owner.get_full_name()
 
 class OrderSerializer(serializers.ModelSerializer):
 
