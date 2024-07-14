@@ -1,7 +1,7 @@
 from django.contrib.auth.models import Group, User
 
 from rest_framework import serializers
-from orgproject.marketplace.models import UserDetails, Product, OrderItem, Order
+from orgproject.marketplace.models import UserDetails, Product, CartItem, Order
 
 class UserDetailsSerializer(serializers.ModelSerializer):
 
@@ -27,10 +27,10 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = '__all__'
 
-class OrderItemSerializer(serializers.ModelSerializer):
+class CartItemSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = OrderItem
+        model = CartItem
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):

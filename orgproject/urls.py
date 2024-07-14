@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
+    path('', RedirectView.as_view(url='/app/home/', permanent=False)),
     path('admin/', admin.site.urls),
     path('app/', include('orgproject.marketplace.urls')),
 ]

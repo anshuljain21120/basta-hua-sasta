@@ -8,9 +8,9 @@ from orgproject.commons.exceptions import UserNotLoggedIn
 from orgproject.commons.rest_framework.generics import CURLViewSet, SafeDeleteCompleteViewSet
 from orgproject.commons.rest_framework.pagination import DefaultPagination
 from orgproject.marketplace.filters import ProductFilterSet
-from orgproject.marketplace.models import Product, Order, UserDetails, OrderItem
+from orgproject.marketplace.models import Product, Order, UserDetails, CartItem
 from orgproject.marketplace.serializers import ProductSerializer, OrderSerializer, UserDetailsSerializer, \
-    OrderItemSerializer, UserSerializer, GroupSerializer
+    CartItemSerializer, UserSerializer, GroupSerializer
 
 
 # Create your views here.
@@ -33,9 +33,9 @@ class OrderCURLViewSet(CURLViewSet):
     pagination_class = DefaultPagination
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-class OrderItemCURLViewSet(CURLViewSet):
-    queryset = OrderItem.objects.all().order_by('-id')
-    serializer_class = OrderItemSerializer
+class CartItemCURLViewSet(CURLViewSet):
+    queryset = CartItem.objects.all().order_by('-id')
+    serializer_class = CartItemSerializer
     pagination_class = DefaultPagination
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 

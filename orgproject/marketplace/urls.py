@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 
 from . import views
 from .views import ProductCURLViewSet, UserCURLViewSet, GroupCURLViewSet, UserDetailsCURLViewSet, OrderCURLViewSet, \
-    OrderItemCURLViewSet, HomePageView, MyProductsView, ProductDetailView
+    CartItemCURLViewSet, HomePageView, MyProductsView, ProductDetailView
 
 # Using ViewSets
 router = DefaultRouter()
@@ -12,7 +12,7 @@ router.register(r'v1/group', GroupCURLViewSet, basename='group')
 router.register(r'v1/userdetails', UserDetailsCURLViewSet, basename='userdetails')
 router.register(r'v1/product', ProductCURLViewSet, basename='product')
 router.register(r'v1/order', OrderCURLViewSet, basename='order')
-router.register(r'v1/orderitem', OrderItemCURLViewSet, basename='orderitem')
+router.register(r'v1/cartitem', CartItemCURLViewSet, basename='cartitem')
 
 # Additionally, we include URLs. Individual views are also added here.
 urlpatterns = [
