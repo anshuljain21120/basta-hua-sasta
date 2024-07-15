@@ -7,12 +7,22 @@
 
 <body>
 <h1>Manage Your Products</h1>
+
+{% include 'marketplace/navbar.html' %}
+
+<br>
+<a href="{% url 'my-product-create' %}">Create New Product</a>
 <br>
 Total count: {{ count }}
 {% if results %}
     <ul>
         {% for product in results %}
-            <li><a href="{% url 'product_detail' product.id %}">{{ product.title }}</a></li>
+            <li>
+                <a href="{% url 'product-detail' product.id %}">{{ product.title }}</a>
+                {% if user.is_authenticated and user.id == product.owner %}
+                    <a href="{% url 'my-product-update' product.id %}"> Edit</a>
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
     {% if next %} <a href= {{ next }}>Next</a> {% endif %}

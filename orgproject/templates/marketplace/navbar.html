@@ -1,0 +1,10 @@
+<!-- Navbar -->
+<nav><div class="topnav">
+  <a class="active" href="{% url 'homepage' %}">Home</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'my-product-list' %}"> | My Products<a>
+        <a href="{% url 'rest_framework:logout' %}"> | Log Out</a>
+    {% else %}
+        <a href="{% url 'rest_framework:login' %}"> | Log In</a>
+    {% endif %}
+</div></nav>

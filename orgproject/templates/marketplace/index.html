@@ -8,19 +8,13 @@
 <body>
 <h1>Market Place</h1>
 <h2>Buy and sell products</h2>
-{% if user.is_authenticated %}
-    <a href="{% url 'my_products' %}">My Products<a>
-    <br>
-    <a href="{% url 'rest_framework:logout' %}">Log Out</a>
-{% else %}
-    <a href="{% url 'rest_framework:login' %}">Log In</a>
-{% endif %}
+{% include 'marketplace/navbar.html' %}
 <br>
 Total count: {{ count }}
 {% if results %}
     <ul>
         {% for product in results %}
-            <li><a href="{% url 'product_detail' product.id %}">{{ product.title }}</a></li>
+            <li><a href="{% url 'product-detail' product.id %}">{{ product.title }}</a></li>
         {% endfor %}
     </ul>
     {% if next %} <a href= {{ next }}>Next</a> {% endif %}

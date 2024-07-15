@@ -24,7 +24,7 @@ class Product(TimeStampedAbstractModel, SafeDeleteAbstractModel):
     title = models.CharField(max_length=100)
     price = models.DecimalField(decimal_places=2, max_digits=5)
     description = models.CharField(max_length=200, blank=True)
-    owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(to=User, on_delete=models.CASCADE, editable=False)
     available_count = models.PositiveIntegerField(default=1)
     image_url = models.URLField()
 
