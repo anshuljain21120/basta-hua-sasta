@@ -1,0 +1,23 @@
+<!doctype html>
+{% load static %}
+
+Total count: {{ count }}
+{% if results %}
+    <ul>
+        {% for product in results %}
+            <li>
+                <a href="{% url 'product-detail' product.id %}">{{ product.title }}</a>
+                {% if user.is_authenticated and user.id == product.owner %}
+                    <a href="{% url 'my-product-update' product.id %}">
+                        <img src="{% static 'marketplace/edit.svg' %}" alt="edit"/>
+                    </a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% if next %} <a href= {{ next }}>Next</a> {% endif %}
+    {% if next or previous %} | {% endif %}
+    {% if previous %} <a href= {{ previous }}>Previous</a> {% endif %}
+{% else %}
+    <p>No products are available.</p>
+{% endif %}

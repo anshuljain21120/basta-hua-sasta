@@ -1,0 +1,21 @@
+{% extends 'marketplace/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+
+    <br> <img src="{{ image_url }}" alt="{{ title }}"> <br>
+    Price: ${{ price }}
+    <br>
+    Only {{ available_count }} left in stock!!
+    <br>
+    Seller Name: {{ seller_name }}
+    <br>
+    {% if user.is_authenticated and user.id == owner %}
+        <a href="{% url 'my-product-update' id %}">
+            <img src="{% static 'marketplace/edit.svg' %}" alt="edit"/>
+        </a>
+{#    {% elif user.is_authenticated %}#}
+{#        <a href="{% url 'cart-update' id %}"> Edit </a>#}
+    {% endif %}
+{% endblock %}

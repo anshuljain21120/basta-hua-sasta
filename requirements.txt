@@ -2,3 +2,6 @@ djangorestframework
 Django~=4.2.5
 django-filter~=24.2
 django-extensions
+python-dotenv
+django-crispy-forms
+crispy-bootstrap5
