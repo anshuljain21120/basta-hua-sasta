@@ -24,4 +24,5 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/app/home/', permanent=False)),
     path('admin/', admin.site.urls),
     path('app/', include('basta_hua_sasta.marketplace.urls')),
+    path('app/', include('basta_hua_sasta.account.urls')),
 ]

@@ -1,0 +1,18 @@
+{% extends 'marketplace/base.html' %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    Hi {{ user.username }}!
+    <div class="container">
+        <p>
+        <br>First Name: {{ user.first_name }}
+        <br>Last Name: {{ user.last_name }}
+        <br>E-Mail: {{ user.email }}
+        <br>City: {{ city }}
+        <br>Address: {{ address }}
+        </p>
+    </div>
+    <a href="{% url 'account:profile-address-update' user.id %}">Edit</a>
+{% endblock %}

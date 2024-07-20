@@ -3,6 +3,7 @@ import random
 from django.contrib.auth.models import User
 
 from basta_hua_sasta.marketplace.models import Product
+from basta_hua_sasta.account.models import UserDetails
 
 
 def cleanup():
@@ -10,15 +11,18 @@ def cleanup():
     User.objects.filter(is_superuser=False).delete()
 
 def create_users(usernames):
-    return [
-        User.objects.create_user(
-            username=firstname.lower() + lastname.lower() + str(random.randint(1, 100)),
-            first_name=firstname,
-            last_name=lastname,
-            email=firstname.lower() + lastname.lower() + '@gmail.com',
-            password='pass@123'
-        ) for firstname, lastname in usernames
-    ]
+    users = []
+    for firstname, lastname in usernames:
+        user = User.objects.create_user(
+                username=firstname.lower() + lastname.lower() + str(random.randint(1, 100)),
+                first_name=firstname,
+                last_name=lastname,
+                email=firstname.lower() + lastname.lower() + '@gmail.com',
+                password='pass@123'
+            )
+        UserDetails.objects.create(user=user)
+        users.append(user)
+    return users
 
 def create_products(users_qs, title_iterator, n):
     return Product.objects.bulk_create([Product(title=next(title_iterator), price=random.random() * 1000,

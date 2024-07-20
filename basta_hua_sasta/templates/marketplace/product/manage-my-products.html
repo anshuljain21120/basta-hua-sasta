@@ -1,7 +1,8 @@
 {% extends 'marketplace/base.html' %}
 
+{% block title %}Manage Your Products{% endblock %}
+
 {% block content %}
-    <h1>Manage Your Products</h1>
     <br><a href="{% url 'my-product-create' %}">Create New Product</a>
     <br>{% include 'marketplace/product/list.html' %}
 {% endblock %}

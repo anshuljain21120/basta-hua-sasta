@@ -1,13 +1,6 @@
-from django.contrib.auth.models import Group, User
-
 from rest_framework import serializers
-from basta_hua_sasta.marketplace.models import UserDetails, Product, CartItem, Order
+from basta_hua_sasta.marketplace.models import Product, CartItem, Order
 
-class UserDetailsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = UserDetails
-        fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
     seller_name = serializers.SerializerMethodField(method_name='get_seller_name')
@@ -31,15 +24,4 @@ class CartItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CartItem
-        fields = '__all__'
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = '__all__'
-
-
-class GroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Group
         fields = '__all__'

@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_extensions',
     'crispy_forms',
-    'crispy_bootstrap5',
+    'crispy_bootstrap5', 'basta_hua_sasta.account',
     'basta_hua_sasta.marketplace'
 ]
 

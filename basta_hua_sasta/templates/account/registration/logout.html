@@ -1,0 +1,13 @@
+<!-- templates/registration/login.html -->
+{% extends "account/base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}Log Out{% endblock %}
+
+{% block content %}
+    You have logged out.
+
+    <br>To go to homepage <a href="{% url 'account:signup' %}">Click Here</a>
+    <br>Logged out by mistake ? <a href="{% url 'account:login' %}">Log In Again</a>
+{% endblock %}

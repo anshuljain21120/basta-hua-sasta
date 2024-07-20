@@ -2,6 +2,8 @@
 
 Steps to run:
 
+[//]: # (https://bootstrap-ecommerce.com/)
+
 Install dependencies
 ```shell
 pip install -r requirements.txt

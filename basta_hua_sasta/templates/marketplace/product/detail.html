@@ -1,9 +1,9 @@
 {% extends 'marketplace/base.html' %}
 {% load static %}
 
-{% block content %}
-    <h1>{{ title }}</h1>
+{% block title %}{{ title }}{% endblock %}
 
+{% block content %}
     <br> <img src="{{ image_url }}" alt="{{ title }}"> <br>
     Price: ${{ price }}
     <br>
@@ -11,11 +11,9 @@
     <br>
     Seller Name: {{ seller_name }}
     <br>
-    {% if user.is_authenticated and user.id == owner %}
+    {% if request.user.is_authenticated and request.user.id == owner %}
         <a href="{% url 'my-product-update' id %}">
             <img src="{% static 'marketplace/edit.svg' %}" alt="edit"/>
         </a>
-{#    {% elif user.is_authenticated %}#}
-{#        <a href="{% url 'cart-update' id %}"> Edit </a>#}
     {% endif %}
 {% endblock %}

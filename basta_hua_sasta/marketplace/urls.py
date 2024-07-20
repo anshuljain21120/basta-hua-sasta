@@ -4,7 +4,6 @@ from . import views
 
 # Additionally, we include URLs. Individual views are also added here.
 urlpatterns = [
-    path('', include('rest_framework.urls', namespace='rest_framework')),
     path('api/', include('basta_hua_sasta.marketplace.api.urls', namespace='api')),
     path('home/', views.HomePageView.as_view(), name='homepage'),
     path('myproducts/', views.MyProductsView.as_view(), name='my-product-list'),
