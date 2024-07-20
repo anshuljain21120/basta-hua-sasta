@@ -29,7 +29,7 @@ def create_products(users_qs, title_iterator, n):
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed turpis ac turpis placerat "
                     "condimentum. Quisque luctus est quis facilisis sodales. Vestibulum elementum massa ac nulla id.",
         owner=random.choice(users_qs), available_count=random.randint(1, 10),
-        image_url=f"https://picsum.photos/id/{random.randint(1, 30)}/900/500") for i in range(n)])
+        image_url=f"https://picsum.photos/id/{random.randint(1, 30)}/900/500") for _ in range(n)])
 
 def run():
     cleanup()

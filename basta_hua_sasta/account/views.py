@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import Http404
 from django.views.generic import CreateView, UpdateView
-from rest_framework.renderers import TemplateHTMLRenderer, JSONRenderer
+from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.reverse import reverse_lazy
 from rest_framework import generics, permissions
