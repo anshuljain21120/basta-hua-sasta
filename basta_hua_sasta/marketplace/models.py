@@ -46,7 +46,7 @@ class Order(TimeStampedAbstractModel, SafeDeleteAbstractModel):
 class CartItem(TimeStampedAbstractModel):
     buyer = models.ForeignKey(to=User, on_delete=models.CASCADE)
     product = models.ForeignKey(to=Product, on_delete=models.DO_NOTHING)
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField(default=0)
 
     @property
     def price(self) -> float:

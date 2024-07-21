@@ -15,5 +15,11 @@
         <a href="{% url 'my-product-update' id %}">
             <img src="{% static 'marketplace/edit.svg' %}" alt="edit"/>
         </a>
+    {% else %}
+        <form action="{% url 'cart-item-update' id %}" method="post">{% csrf_token %}
+            <input type="hidden" name="_method" value="put">
+            <input type="hidden" name="operation" value="increment"> 
+            <input class="btn btn-primary" type="submit" value="Add to Cart">
+        </form>
     {% endif %}
 {% endblock %}

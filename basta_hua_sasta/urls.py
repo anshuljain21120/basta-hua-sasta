@@ -23,6 +23,12 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('', RedirectView.as_view(url='/app/home/', permanent=False)),
     path('admin/', admin.site.urls),
+]
+urlpatterns += [  # Market Place App
     path('app/', include('basta_hua_sasta.marketplace.urls')),
+    path('app/api/', include('basta_hua_sasta.marketplace.api.urls')),
+]
+urlpatterns += [  # Account App
     path('app/', include('basta_hua_sasta.account.urls')),
+    path('app/api/', include('basta_hua_sasta.account.api.urls')),
 ]

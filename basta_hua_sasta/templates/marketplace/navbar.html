@@ -40,6 +40,11 @@
     
         {% if request.user.is_authenticated %}
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cart-item-list' %}">
+                        <img src="{% static 'marketplace/cart_icon.svg' %}" alt="cart"/>
+                    </a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" 
                        href="#" role="button" aria-expanded="false">

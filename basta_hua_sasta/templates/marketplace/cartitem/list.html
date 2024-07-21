@@ -1,0 +1,30 @@
+{% extends 'marketplace/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if results %}
+        Total price: {{ total_amount }}
+        Total products: {{ count }}
+        Total items: {{ total_items }}
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+        <ul>
+            {% for cart_item in results %}
+                <li>
+                    <img src="{{ cart_item.product.image_url }}" alt="{{ cart_item.product.title }}" height="400" width="500">
+                    <a href="{% url 'product-detail' cart_item.product.id %}">{{ cart_item.product.title }}</a>
+                    <br> {{ cart_item.product.description }}
+                    <br> Price: {{ cart_item.product.price }}
+                    <br> Quantity: {{ cart_item.quantity }}
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+        {% if next %} <a href= {{ next }}>Next</a> {% endif %}
+        {% if next or previous %} | {% endif %}
+        {% if previous %} <a href= {{ previous }}>Previous</a> {% endif %}
+    {% else %}
+        <p>
+            It is very lonely here!
+        </p>
+    {% endif %}
+{% endblock %}
