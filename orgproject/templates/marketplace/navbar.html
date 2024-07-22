@@ -1,10 +1,11 @@
 <!-- Navbar -->
 <nav><div class="topnav">
-  <a class="active" href="{% url 'homepage' %}">Home</a>
+  <a class="active" href="{% url 'homepage' %}">HOME </a>
+
     {% if user.is_authenticated %}
-        <a href="{% url 'my-product-list' %}"> | My Products<a>
-        <a href="{% url 'rest_framework:logout' %}"> | Log Out</a>
+        <a href="{% url 'my-product-list' %}"> MY PRODUCTS<a>
+        <a href="{% url 'rest_framework:logout' %}">  LOG OUT</a>
     {% else %}
-        <a href="{% url 'rest_framework:login' %}"> | Log In</a>
+        <a href="{% url 'rest_framework:login' %}">  LOG IN</a>
     {% endif %}
 </div></nav>

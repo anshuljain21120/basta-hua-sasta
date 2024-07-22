@@ -1,26 +1,181 @@
+<?php
+require('inc/config.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Market Place</title>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BASTA HUA SASTA</title>
+    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <style type="text/css">
+        body {
+            background-color: #121212;
+            color: white;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 10px 35px;
+            color: white;
+        }
+        .header-logo {
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .topnav {
+            display: flex;
+            align-items: center;
+        }
+        .topnav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            margin: 0 10px;
+        }
+        .main-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        .main-nav li {
+            margin: 0 10px;
+        }
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+        }
+        .main-nav .dropdown-menu {
+            background-color: #333;
+        }
+        .main-nav .dropdown-menu a {
+            color: white;
+        }
+        .header-buttons {
+            display: flex;
+            align-items: center;
+        }
+        .header-buttons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            border-radius: 5px;
+        }
+        .tp1 {
+            font-size: 40px;
+            margin: 0 20px;
+        }
+        .total-count {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 20px;
+}
 
+.list-group-item-dark {
+    background-color: #333;
+    border-color: #444;
+    color: #fff;
+}
+
+.product-link {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.product-link:hover {
+    text-decoration: underline;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.no-products {
+    font-size: 16px;
+    color: #ccc;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
 <body>
-<h1>Market Place</h1>
-<h2>Buy and sell products</h2>
-{% include 'marketplace/navbar.html' %}
-<br>
-Total count: {{ count }}
-{% if results %}
-    <ul>
-        {% for product in results %}
-            <li><a href="{% url 'product-detail' product.id %}">{{ product.title }}</a></li>
-        {% endfor %}
-    </ul>
-    {% if next %} <a href= {{ next }}>Next</a> {% endif %}
-    |{% if previous %} <a href= {{ previous }}>Previous</a> {% endif %}
-{% else %}
-    <p>No products are available.</p>
-{% endif %}
+    <!-- HEADER -->
+    <header class="header-container">
+        <div class="header-logo">
+            <span>BASTA</span><span>HUA</span><span>SASTA</span>
+        </div>
+        <nav class="topnav">
+            <a class="active" href="{% url 'homepage' %}">HOME</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'my-product-list' %}">MY PRODUCTS</a>
+                <a href="{% url 'rest_framework:logout' %}">LOG OUT</a>
+            {% else %}
+                <a href="{% url 'rest_framework:login' %}">LOG IN</a>
+            {% endif %}
+
+            <a href="bought_products.php">BOUGHT PRODUCTS</a>
+
+            <a href="about_us.php">ABOUT US</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="home.php">
+                    <?php echo $_SESSION['email']; ?>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="change_password.php">Change Password</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+   <br>
+<div class="container">
+    <p class="total-count">Total count: {{ count }}</p>
+    {% if results %}
+        <ul class="list-group">
+            {% for product in results %}
+                <li class="list-group-item list-group-item-dark">
+                    <a href="{% url 'product-detail' product.id %}" class="product-link">{{ product.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="pagination-container">
+            {% if previous %}
+                <a href="{{ previous }}" class="btn btn-secondary">Previous</a>
+            {% endif %}
+            {% if next %}
+                <a href="{{ next }}" class="btn btn-secondary">Next</a>
+            {% endif %}
+        </div>
+    {% else %}
+        <p class="no-products">No products are available.</p>
+    {% endif %}
+</div>
+
+
+    <!-- FOOTER -->
+    <footer class="container-fluid bg-4 text-center">
+        <p>@ 2024 Copyright: <a href="home.php">www.bhs.com </a></p>
+    </footer>
+
+    <!-- content JS -->
+    <script src="content.js"></script>
 </body>
 </html>
