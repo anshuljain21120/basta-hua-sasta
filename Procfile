@@ -1,3 +1,1 @@
-# web: gunicorn basta_hua_sasta.wsgi --log-file -
-# or works good with external database
-web: python manage.py migrate && gunicorn basta_hua_sasta.wsgi
+web: python manage.py migrate && gunicorn basta_hua_sasta.wsgi --bind 0.0.0.0:8000 --access-logfile - --error-logfile -
