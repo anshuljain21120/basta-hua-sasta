@@ -7,9 +7,13 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.reverse import reverse_lazy
 
+from basta_hua_sasta.commons.decorators import log_fn
 from basta_hua_sasta.commons.rest_framework.pagination import DefaultPagination
 from basta_hua_sasta.marketplace.models import Product, CartItem
 from basta_hua_sasta.marketplace.serializers import ProductSerializer, CartItemSerializer
+
+from basta_hua_sasta.commons.logger import Logger
+logger = Logger.get_logger(__name__)
 
 
 # Create your views here.
@@ -19,7 +23,6 @@ class HomePageView(generics.ListAPIView):
     renderer_classes = [TemplateHTMLRenderer]
 
     def get_queryset(self):
-
         queryset = Product.objects.all().filter(available_count__gt=0).order_by('-id')
         if self.request.user and self.request.user.is_authenticated:
             queryset = queryset.exclude(owner=self.request.user.id)
@@ -27,6 +30,7 @@ class HomePageView(generics.ListAPIView):
             return queryset.filter(title__icontains=self.request.query_params.get('q'))
         return queryset
 
+    @log_fn(logger=logger)
     def list(self, request, *args, **kwargs):
         return Response(super().list(request, *args, **kwargs).data, template_name='marketplace/index.html')
 
@@ -42,6 +46,7 @@ class MyProductsView(LoginRequiredMixin, generics.ListAPIView):
                                                 title__icontains=str(self.request.query_params.get('q')).lower()).order_by('-id')
         return Product.objects.all().filter(owner=self.request.user.id).order_by('-id')
 
+    @log_fn(logger=logger)
     def list(self, request, *args, **kwargs):
         return Response(super().list(request, *args, **kwargs).data,
                         template_name='marketplace/product/manage-my-products.html')
@@ -58,6 +63,7 @@ class ProductDetailView(generics.RetrieveAPIView):
         cart_item = CartItem.objects.filter(buyer_id=self.request.user.id, product_id=product.id).last()
         return cart_item.quantity if cart_item else 0
 
+    @log_fn(logger=logger)
     def get(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
@@ -92,6 +98,7 @@ class CartItemRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CartItemSerializer
     renderer_classes = [TemplateHTMLRenderer]
 
+    @log_fn(logger=logger)
     def post(self, request, *args, **kwargs):
         if request.POST.get('_method') == 'put':
             return self.update(request, *args, **kwargs)
@@ -129,6 +136,7 @@ class CartItemListView(generics.ListAPIView):
     def get_queryset(self):
         return CartItem.objects.all().filter(buyer_id=self.request.user.id).order_by('-id')
 
+    @log_fn(logger=logger)
     def list(self, request, *args, **kwargs):
         data = super().list(request, *args, **kwargs).data
         return Response(data, template_name='marketplace/cartitem/list.html')

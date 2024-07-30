@@ -12,7 +12,10 @@ from rest_framework import generics, permissions
 
 from basta_hua_sasta.account.models import UserDetails
 from basta_hua_sasta.account.serializers import UserDetailsSerializer
+from basta_hua_sasta.commons.decorators import log_fn
+from basta_hua_sasta.commons.logger import Logger
 
+logger = Logger.get_logger(__name__)
 
 # Create your views here.
 class SignUpView(CreateView):
@@ -43,6 +46,7 @@ class ProfileDetailView(LoginRequiredMixin, generics.RetrieveAPIView):
         except UserDetails.DoesNotExist:
             raise Http404("No such user exists")
 
+    @log_fn(logger=logger)
     def get(self, request, *args, **kwargs):
         return Response(super().get(request, *args, **kwargs).data,
                         template_name='account/detail.html')

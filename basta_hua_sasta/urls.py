@@ -18,11 +18,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 
+from basta_hua_sasta.commons.health_status import health_status_for_service, health_status
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', RedirectView.as_view(url='/app/home/', permanent=False)),
     path('admin/', admin.site.urls),
+]
+urlpatterns += [
+    path(r'health/app/status', health_status_for_service),
+    path(r'health/status', health_status)
 ]
 urlpatterns += [  # Market Place App
     path('app/', include('basta_hua_sasta.marketplace.urls')),
