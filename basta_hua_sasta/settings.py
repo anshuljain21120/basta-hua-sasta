@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'django_filters',
     'django_extensions',
     'crispy_forms',
-    'crispy_bootstrap5', 'basta_hua_sasta.account',
+    'crispy_bootstrap5',
+    'whitenoise.runserver_nostatic',
+    'basta_hua_sasta.account',
     'basta_hua_sasta.marketplace'
 ]
 
@@ -89,9 +91,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
-STATICFILES_DIRS = [
-    BASE_DIR / "basta_hua_sasta" / "static",
-]
+STATIC_ROOT = BASE_DIR / "basta_hua_sasta" / "static"
+
 mimetypes.add_type("image/svg+xml", ".svg", True)
 mimetypes.add_type("image/svg+xml", ".svgz", True)
 

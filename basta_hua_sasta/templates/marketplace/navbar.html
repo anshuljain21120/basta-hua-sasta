@@ -58,7 +58,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="{% static 'marketplace/logo.jpg' %}" alt="Logo" style="width:40px;">
+            <img src="{% static 'logo.jpg' %}" alt="Logo" style="width:40px;">
             Basta Hua Sasta
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -80,7 +80,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'homepage' %}">
-                        <img src="{% static 'marketplace/homepage.png' %}" alt="Home" style="width:24px;">
+                        <img src="{% static 'homepage.png' %}" alt="Home" style="width:24px;">
                     </a>
                 </li>
                 {% if not request.user.is_authenticated %}
@@ -94,12 +94,12 @@
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'cart-item-list' %}">
-                            <img src="{% static 'marketplace/cart_icon.svg' %}" alt="cart" style="width:24px;">
+                            <img src="{% static 'cart_icon.svg' %}" alt="cart" style="width:24px;">
                         </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{% static 'marketplace/person.svg' %}" alt="profile" style="width:24px;">
+                            <img src="{% static 'person.svg' %}" alt="profile" style="width:24px;">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'account:profile-update' request.user.id %}">Edit Account Details</a></li>

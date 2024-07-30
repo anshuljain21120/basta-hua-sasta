@@ -89,7 +89,7 @@
                         <a href="{% url 'product-detail' product.id %}">{{ product.title }}</a>
                         {% if user.is_authenticated and user.id == product.owner %}
                             <a href="{% url 'my-product-update' product.id %}">
-                                <img src="{% static 'marketplace/edit.svg' %}" alt="edit" style="width:16px; vertical-align: middle;"/>
+                                <img src="{% static 'edit.svg' %}" alt="edit" style="width:16px; vertical-align: middle;"/>
                             </a>
                         {% endif %}
                     </li>

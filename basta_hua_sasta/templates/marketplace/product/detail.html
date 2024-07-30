@@ -63,7 +63,7 @@
         </div>
         {% if request.user.is_authenticated and request.user.id == owner %}
             <a href="{% url 'my-product-update' id %}">
-                <img src="{% static 'marketplace/edit.svg' %}" alt="edit"/>
+                <img src="{% static 'edit.svg' %}" alt="edit"/>
             </a>
         {% else %}
             <form action="{% url 'cart-item-update' id %}" method="post">{% csrf_token %}
