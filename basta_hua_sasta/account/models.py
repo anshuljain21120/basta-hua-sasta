@@ -11,6 +11,7 @@ class UserDetails(TimeStampedAbstractModel):
     state = models.CharField(max_length=100, blank=True)
     zip = models.CharField(max_length=100, blank=True)
     address = models.CharField(max_length=200, blank=True)
+    phone = models.CharField(max_length=100, blank=True, default='')
 
     def full_address(self) -> str:
         return f"{self.address or ''}, {self.city or ''}, {self.state or ''}, {self.zip or ''}"

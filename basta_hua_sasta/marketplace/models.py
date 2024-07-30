@@ -9,7 +9,7 @@ from basta_hua_sasta.commons.mixins.abstractmodel import TimeStampedAbstractMode
 
 class Product(TimeStampedAbstractModel, SafeDeleteAbstractModel):
     title = models.CharField(max_length=100)
-    price = models.DecimalField(decimal_places=2, max_digits=5)
+    price = models.DecimalField(decimal_places=2, max_digits=8)
     description = models.CharField(max_length=200, blank=True)
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE, editable=False)
     available_count = models.PositiveIntegerField(default=1)
@@ -21,6 +21,7 @@ class Product(TimeStampedAbstractModel, SafeDeleteAbstractModel):
 
     def __str__(self):
         return self.title + f"(by {self.owner.get_full_name()})"
+
 
 class Order(TimeStampedAbstractModel, SafeDeleteAbstractModel):
     REQUESTED = "Rq"
@@ -42,6 +43,7 @@ class Order(TimeStampedAbstractModel, SafeDeleteAbstractModel):
         snapshot_instance = copy.deepcopy(self)
         snapshot_instance.id = None
         return snapshot_instance
+
 
 class CartItem(TimeStampedAbstractModel):
     buyer = models.ForeignKey(to=User, on_delete=models.CASCADE)

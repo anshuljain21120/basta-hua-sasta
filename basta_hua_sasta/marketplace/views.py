@@ -19,9 +19,12 @@ class HomePageView(generics.ListAPIView):
     renderer_classes = [TemplateHTMLRenderer]
 
     def get_queryset(self):
+
         queryset = Product.objects.all().filter(available_count__gt=0).order_by('-id')
         if self.request.user and self.request.user.is_authenticated:
             queryset = queryset.exclude(owner=self.request.user.id)
+        if self.request.query_params.get('q'):
+            return queryset.filter(title__icontains=self.request.query_params.get('q'))
         return queryset
 
     def list(self, request, *args, **kwargs):
@@ -34,6 +37,9 @@ class MyProductsView(LoginRequiredMixin, generics.ListAPIView):
     renderer_classes = [TemplateHTMLRenderer]
 
     def get_queryset(self):
+        if self.request.query_params.get('q'):
+            return Product.objects.all().filter(owner=self.request.user.id,
+                                                title__icontains=str(self.request.query_params.get('q')).lower()).order_by('-id')
         return Product.objects.all().filter(owner=self.request.user.id).order_by('-id')
 
     def list(self, request, *args, **kwargs):

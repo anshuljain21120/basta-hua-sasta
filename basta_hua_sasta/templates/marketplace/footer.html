@@ -1,0 +1,76 @@
+{% load static %}
+<!-- templates/marketplace/footer.html -->
+<style>
+    .footer {
+        background-color: #ffffff; /* White background for footer */
+        color: #343a40; /* Black text for contrast */
+        padding: 20px 10px; /* Reduced padding for a narrower footer */
+        width: 100%;
+        text-align: center;
+        margin-top: 20px; /* Space between main content and footer */
+        border-top: 1px solid #e0e0e0; /* Optional border for separation */
+    }
+
+    .footer h5 {
+        font-size: 1.5rem; /* Slightly larger font size for headings */
+        margin-bottom: 10px;
+        color: #090909; /* Blue color for headings to make them stand out */
+        font-weight: bold; /* Bold font for emphasis */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow for depth */
+    }
+
+    .footer p {
+        font-size: 0.9rem; /* Slightly smaller font size for paragraphs */
+        margin-bottom: 8px;
+        color: #343a40; /* Black color for paragraphs */
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px; /* Space between icons */
+        margin-top: 10px;
+    }
+
+    .social-icon-img {
+        width: 32px; /* Adjust size of icons */
+        height: 32px;
+        transition: transform 0.3s; /* Smooth scaling effect */
+    }
+
+    .social-icon-img:hover {
+        transform: scale(1.2); /* Slightly enlarge icons on hover */
+    }
+
+    .text-center p {
+        margin: 0;
+        color: #343a40; /* Black color for copyright text */
+    }
+
+</style>
+<footer class="footer">
+    <div class="row">
+        <div class="col-md-4">
+            <h5>About Us</h5>
+            <p>Basta Hua Sasta is a peer-to-peer marketplace designed to simplify college life for students by facilitating the buying, selling, and swapping of second-hand items.</p>
+            
+        </div>
+        <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <p>Email: bastahuasasta@gmail.com</p>
+            <p>Phone: +919582975899, +916307577081</p>
+        </div>
+        <div class="col-md-4">
+            <h5>Follow Us</h5>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61562990886577" class="social-icon"><img src="{% static 'marketplace/facebook_icon.png' %}" alt="Facebook" class="social-icon-img"></a>
+                <a href="https://www.instagram.com/bastahuasasta/" class="social-icon"><img src="{% static 'marketplace/instagram_icon.png' %}" alt="Instagram" class="social-icon-img"></a>
+                <a href="https://x.com/Bastahuasasta" class="social-icon"><img src="{% static 'marketplace/X_icon.png' %}" alt="Twitter" class="social-icon-img"></a>
+                <!-- Add more social icons as needed -->
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-3">
+        <p>&copy; 2024 Basta Hua Sasta. All rights reserved.</p>
+    </div>
+</footer>

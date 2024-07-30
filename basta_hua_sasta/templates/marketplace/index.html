@@ -1,9 +1,34 @@
 {% extends 'marketplace/base.html' %}
+{% load static %}
 
-{% block title %}Market Place{% endblock %}
+{% block title %}Market Place - Your One-Stop Shop{% endblock %}
 
 {% block content %}
-    <h2>Buy and sell books</h2>
-    <br>
+<style>
+  .container {
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text for contrast */
+  }
+
+  .product-list h2 {
+    color: #f8f9fa; /* Light color for the heading */
+    font-size: 2rem; /* Adjust font size */
+    margin-bottom: 20px;
+  }
+
+  .basta-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px; /* Optional: adds rounded corners */
+  }
+</style>
+<div class="container">
+  <section class="product-list">
+    <h2>Fill your Basta</h2>
+    <img src="{% static 'marketplace/basta_image.png' %}" alt="Basta Image" class="basta-image">
+      
     {% include 'marketplace/product/list.html' %}
+  </section>
+</div>
 {% endblock %}
