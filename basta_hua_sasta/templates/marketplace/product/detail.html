@@ -1,25 +1,76 @@
-{% extends 'marketplace/base.html' %}
+{% extends 'marketplace/base2.html' %}
 {% load static %}
 
 {% block title %}{{ title }}{% endblock %}
+<style>
+    .product-detail {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .product-title {
+        font-size: 2em;
+        font-weight: bold;
+        color: #ffffff; /* Adjust color as needed */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+    }
+
+    .product-image {
+        max-width: 100%;
+        height: auto;
+        border: 2px solid #ffffff; /* Adjust border as needed */
+        border-radius: 10px; /* Adjust border radius as needed */
+        margin-bottom: 20px;
+    }
+
+    .product-info {
+        text-align: left;
+        margin: 0 auto;
+        max-width: 600px;
+    }
+
+    .product-info p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #e0e0e0; /* Adjust color as needed */
+    }
+
+    .btn-primary {
+        background-color: #343a40;
+        border-color: #343a40;
+    }
+
+    .btn-primary:hover {
+        background-color: #495057;
+        border-color: #495057;
+    }
+</style>
 
 {% block content %}
-    <br> <img src="{{ image_url }}" alt="{{ title }}"> <br>
-    Price: ${{ price }}
-    <br>
-    Only {{ available_count }} left in stock!!
-    <br>
-    Seller Name: {{ seller_name }}
-    <br>
-    {% if request.user.is_authenticated and request.user.id == owner %}
-        <a href="{% url 'my-product-update' id %}">
-            <img src="{% static 'marketplace/edit.svg' %}" alt="edit"/>
-        </a>
-    {% else %}
-        <form action="{% url 'cart-item-update' id %}" method="post">{% csrf_token %}
-            <input type="hidden" name="_method" value="put">
-            <input type="hidden" name="operation" value="increment"> 
-            <input class="btn btn-primary" type="submit" value="Add to Cart">
-        </form>
-    {% endif %}
+    <div class="product-detail">
+        <h2 class="product-title">{{ title }}</h2>
+        <br>
+        <img src="{{ image_url }}" alt="{{ title }}" class="product-image">
+        <br>
+        <div class="product-info">
+            <p><strong>Price:</strong> ₹{{ price }}</p>
+            <p><strong>Description:</strong> {{ description }}</p>
+            <p><strong>Seller Phone:</strong> {{ phone }}</p>
+            <p><strong>Seller Address:</strong> {{ address }}</p>
+            <p><strong>Only {{ available_count }} left in stock!!</strong></p>
+            <p><strong>Seller Name:</strong> {{ seller_name }}</p>
+        </div>
+        {% if request.user.is_authenticated and request.user.id == owner %}
+            <a href="{% url 'my-product-update' id %}">
+                <img src="{% static 'marketplace/edit.svg' %}" alt="edit"/>
+            </a>
+        {% else %}
+            <form action="{% url 'cart-item-update' id %}" method="post">{% csrf_token %}
+                <input type="hidden" name="_method" value="put">
+                <input type="hidden" name="operation" value="increment"> 
+                <input class="btn btn-primary" type="submit" value="Add to Cart">
+            </form>
+        {% endif %}
+    </div>
 {% endblock %}

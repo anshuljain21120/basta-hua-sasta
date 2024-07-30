@@ -1,30 +1,59 @@
-{% extends 'marketplace/base.html' %}
+{% extends 'marketplace/base2.html' %}
 {% load static %}
 
 {% block content %}
     {% if results %}
-        Total price: {{ total_amount }}
         Total products: {{ count }}
-        Total items: {{ total_items }}
         <hr style="height:2px;border-width:0;color:gray;background-color:gray">
         <ul>
             {% for cart_item in results %}
                 <li>
+                    <a href="{% url 'product-detail' cart_item.product.id %}" class="product-title">{{ cart_item.product.title }}</a>
+                    <br>
                     <img src="{{ cart_item.product.image_url }}" alt="{{ cart_item.product.title }}" height="400" width="500">
-                    <a href="{% url 'product-detail' cart_item.product.id %}">{{ cart_item.product.title }}</a>
                     <br> {{ cart_item.product.description }}
-                    <br> Price: {{ cart_item.product.price }}
+                    <br> Price Per Product: {{ cart_item.product.price }}
                     <br> Quantity: {{ cart_item.quantity }}
                 </li>
                 <hr>
             {% endfor %}
         </ul>
-        {% if next %} <a href= {{ next }}>Next</a> {% endif %}
+        {% if next %} <a href="{{ next }}">Next</a> {% endif %}
         {% if next or previous %} | {% endif %}
-        {% if previous %} <a href= {{ previous }}>Previous</a> {% endif %}
+        {% if previous %} <a href="{{ previous }}">Previous</a> {% endif %}
     {% else %}
-        <p>
-            It is very lonely here!
-        </p>
+        <div class="empty-cart-message">
+            <img src="{% static 'marketplace/empty_cart.gif' %}" alt="Empty Cart" class="empty-cart-img">
+        </div>
     {% endif %}
 {% endblock %}
+
+<style>
+    body {
+        min-height: 100vh; /* Ensure the body takes up full viewport height */
+        margin: 0; /* Remove default margin */
+    }
+
+    .product-title {
+        font-weight: bold;
+        font-size: 10.0rem;
+        color: #ffffff; /* Adjust color for better visibility */
+    }
+
+    .empty-cart-message {
+        display: flex; /* Use Flexbox for alignment */
+        align-items: center; /* Center items vertically */
+        justify-content: center; /* Center items horizontally */
+        min-height: 100vh; /* Full viewport height */
+        flex-direction: column; /* Stack items vertically */
+        gap: 20px; /* Space between image and text */
+        text-align: center; /* Center text */
+    }
+
+    .empty-cart-img {
+        max-width: 100%; /* Ensure the image is responsive */
+        height: 200px; /* Maintain aspect ratio */
+        width: 300px; /* Set a fixed width */
+        border-radius: 10px; /* Optional: rounded corners */
+    }
+</style>

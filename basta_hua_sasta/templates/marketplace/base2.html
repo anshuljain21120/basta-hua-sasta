@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+{% include 'marketplace/navbar.html' %}
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+{% endblock %}

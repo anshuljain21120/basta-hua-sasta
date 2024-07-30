@@ -1,11 +1,84 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
 
 {% block main %}
 {% include 'marketplace/navbar.html' %}
-  <div class="container">
-    {% block content %}
-    {% endblock %}
+
+<style>
+/* Full-width section */
+.buy-sell-section {
+  padding: 60px; /* Padding for spacing */
+  background-color: #000000; /* Black background */
+  color: #ffffff; /* White text for contrast */
+  margin: 0; /* Remove margins */
+  text-align: left; /* Ensure text alignment */
+}
+
+/* Heading style */
+.buy-sell-section h2 {
+  font-size: 2.5rem; /* Larger font size for the heading */
+  margin-bottom: 20px;
+  font-weight: bold; /* Make the heading bold */
+  color: #f8f9fa; /* Light color for the heading */
+}
+
+/* Paragraph style */
+.buy-sell-section p {
+  margin-bottom: 25px; /* Increased margin for better spacing */
+  font-size: 1.2rem; /* Larger font size for the paragraphs */
+  line-height: 1.8; /* Improved line height for readability */
+  color: #d3d3d3; /* Slightly lighter color for better readability */
+}
+
+/* Button style */
+.buy-sell-section .btn {
+  margin-top: 20px;
+  background-color: #007bff; /* Bright button color */
+  border-color: #007bff;
+  color: #ffffff; /* Button text color */
+}
+
+/* Button hover state */
+.buy-sell-section .btn:hover {
+  background-color: #0056b3; /* Darker button color on hover */
+  border-color: #004085;
+}
+
+/* Image style */
+.buy-sell-section img {
+  max-width: 100%;
+  border-radius: 8px; /* Optional: to match overall design theme */
+}
+
+/* Container styling */
+.container {
+  background-color: #000000; /* Black background */
+  color: #ffffff; /* White text for contrast */
+  margin-top: 40px; /* Add margin to shift content down */
+}
+</style>
+
+<section class="buy-sell-section">
+  <div class="row no-gutters"> <!-- Remove gutters to ensure no extra spacing -->
+    <div class="col-md-6">
+      <h2>Buy and Sell University Items with Ease</h2>
+      <p>It's not that easy to find the university items you need without the right platform. Can you imagine a student finding all their necessary textbooks without a reliable source?</p>
+      <p>There is no magic; it's time to use the platform you deserve.</p>
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'marketplace/home1.png' %}" alt="University Items" class="img-fluid">
+    </div>
   </div>
+</section>
+
+<div class="container">
+  {% block content %}
+  {% endblock %}
+</div>
+
+{% endblock %}
+{% block commerce_section %}
+    {% include 'marketplace/product/commerce_section.html' %}
 {% endblock %}

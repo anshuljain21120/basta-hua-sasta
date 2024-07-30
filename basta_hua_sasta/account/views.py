@@ -49,7 +49,7 @@ class ProfileDetailView(LoginRequiredMixin, generics.RetrieveAPIView):
 
 class ProfileAddressUpdateView(UpdateView):
     model = UserDetails
-    fields = ['city', 'state', 'zip', 'address']
+    fields = ['city', 'state', 'zip', 'address', 'phone']
     success_url = reverse_lazy('account:profile-detail')
     template_name = 'account/form.html'
     slug_field = 'user_id'

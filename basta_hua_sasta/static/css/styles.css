@@ -1,0 +1,42 @@
+#buy-sell-university-items {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+#buy-sell-university-items .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#buy-sell-university-items .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#buy-sell-university-items .image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+#buy-sell-university-items .text {
+    max-width: 600px;
+}
+
+#buy-sell-university-items .btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#buy-sell-university-items .btn:hover {
+    background-color: #0056b3;
+}
